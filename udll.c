@@ -4,7 +4,7 @@
 Connects the previous node to it and connect itself to the next node */
 void insert(int index, union Data data){
 }
-
+/* deletes node in specific index. Connects the previous node to the next node*/
 void remove (int index){
 }
 
