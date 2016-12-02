@@ -51,7 +51,25 @@ void removeNode (int index){
 /* returns the data value of the node of the specific index*/ 
 
 union Data get(int index){
+  
+	int i;
+	if (index <= (length()) / 2) {
+	  	ptr = &head;
+	  	for (i = 0; i < index; i++) {
+	  		  ptr=(*ptr).next;
+		  } 
+		  return (*ptr).data;
+	} 
+  else {
+		  ptr = &last;
+		  for (j = 0; j < length() - (index - j); j++) {
+			    ptr=(*ptr).prev;
+		  } 
+		  return (*ptr).data;
+	} 
+  
 }
+  
 /*returns the number of nodes in the list*/
 
 int length(){
