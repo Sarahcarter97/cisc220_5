@@ -63,7 +63,7 @@ union Data get(int index){
   else {
 		  ptr = &last;
 		  for (j = 0; j < length() - (index - j); j++) {
-			    ptr=(*ptr).prev;
+			    ptr=(*ptr).previous;
 		  } 
 		  return (*ptr).data;
 	} 
