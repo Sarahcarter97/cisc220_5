@@ -47,8 +47,32 @@ void insert(int index, union Data data){
 }
 /* deletes node in specific index. Connects the previous node to the next node*/
 void removeNode (int index){
+	
+        if(index == 0) { 
+                head->next->length = head->length;
+                *head = *head->next;
+                *head->prev = NULL;
+        }
+	
+        else if(index <= head->length) { 
+                Node *ptr = head;
+                for(int i = 0; i < (index-1); i++) {
+                        ptr = ptr->next;
+                }
+                Node *after = *ptr->next->next;
+                ptr->next = *after;
+                after->prev = *ptr;
+        }
+	
+        else if(index == head->length) { 
+                *last = *last->prev;
+                last->next = NULL;
+        }
+        else { 
+                printf("Index not valid");
+        }
+        head->length = head->length - 1;	
 }
-/* returns the data value of the node of the specific index*/ 
 
 union Data get(int index){
   
