@@ -6,42 +6,64 @@
 Connects the previous node to it and connect itself to the next node */
 /* size or head.length */
 void insert(int index, union Data data){
-  if (head == NULL){
-    head = newNode;
-    last = newNode;
-    head->length = 1;
-    return;
-  }
-  else if (index == (size-1)) {
-    Node* temp = last;
-    last = newNode;
-    last->previous = temp;
-    last->next = NULL;
-    head->length = size +1;
-  }
-  else if (index == 0 ) {
-    head->previous = newNode;
-    newNode->next = head;
-    newNode->length = size;
-    head = newNode;
-    head->length = size +1;
-  }
-  else if (index <= (size -1) - 2){
-    if (index <= (size / 2)){
-      Node* temp = head;
-      Node* temp1;
-      int i = 0;
-      while (i< index -1){
-          temp = temp->next;
-          i++;
-      }
-      newTemp = temp->next;
-      temp->next = newNode;
-      newNode->previous = temp;
-      newNode->next = newTemp;
-      if (newTemp != NULL){
-        newTemp->previous = newNode;
-      }
+	Node* newNode= (struct Node*)malloc(sizeof(struct Node));
+	newNode->data = data;
+	newNode->nextPtr= NULL;
+	newNode->prevPtr = NULL;
+	return newNode
+	
+  	if (head == NULL){
+    		head = newNode;
+    		last = newNode;
+    		head->length = 1;
+    		return;
+  	}
+  	else if (index == (size-1)) {
+    		Node* temp = last;
+    		last = newNode;
+    		last->prevPtr = temp;
+    		last->nextPtr = NULL;
+    		head->length = size +1;
+  	}
+  	else if (index == 0 ) {
+    		head->prevPtr = newNode;
+    		newNode->nextPtr = head;
+    		newNode->length = size;
+    		head = newNode;
+   		head->length = size +1;
+  	}
+ 	else if (index <= (size -1) - 2){
+    		if (index <= (size / 2)){
+      			Node* temp = head;
+      			Node* newTemp;
+      			int i = 0;
+      			while (i< index -1){
+          			temp = temp->next;
+          			i++;
+      			}
+      			newTemp = temp->nextPtr;
+      			temp->next = newNode;
+      			newNode->prevPtr = temp;
+      			newNode->next = newTemp;
+      		if (newTemp != NULL){
+        		newTemp->prevPtr = newNode;
+      		}
+	else if (index > ((size -1)/2)){
+		Node* temp = last;
+		Node* newTemp;
+		int i = size;
+		while (i > index){
+			temp  temp->prevPtr;
+			i--;
+		}
+		newTemp = temp->prevPtr;
+		temp->prevPtr = newNode;
+		newNode->prevPtr = newTemp;
+		newNode->nextPtr = temp;
+		newTemp->nextPtr = newNode;
+	}
+	/*head->length = size +1*/
+			
   }
       
 }
