@@ -117,11 +117,8 @@ union Data get(int index){
 }
   
 /*returns the number of nodes in the list*/
-
 int length(){
-	
-	
-	
+	return head->length;
 }
 
   
