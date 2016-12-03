@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include"udll.h"
 
-/* creates a new node and inserts it into the specified index. 
-Connects the previous node to it and connect itself to the next node */
-/* size or head.length */
+/* Inserts a new node into a specific index
+ */
+
 void insert(int index, union Data data){
 	Node* newNode= (struct Node*)malloc(sizeof(struct Node));
 	newNode->data = data;
-	newNode->nextPtr= NULL;
-	newNode->prevPtr = NULL;
+	newNode->next= NULL;
+	newNode->previous = NULL;
 	return newNode
 	
   	if (head == NULL){
@@ -21,13 +21,13 @@ void insert(int index, union Data data){
   	else if (index == (size-1)) {
     		Node* temp = last;
     		last = newNode;
-    		last->prevPtr = temp;
-    		last->nextPtr = NULL;
+    		last->previous = temp;
+    		last->next = NULL;
     		head->length = size +1;
   	}
   	else if (index == 0 ) {
-    		head->prevPtr = newNode;
-    		newNode->nextPtr = head;
+    		head->previous = newNode;
+    		newNode->next = head;
     		newNode->length = size;
     		head = newNode;
    		head->length = size +1;
@@ -41,26 +41,26 @@ void insert(int index, union Data data){
           			temp = temp->next;
           			i++;
       			}
-      			newTemp = temp->nextPtr;
+      			newTemp = temp->next;
       			temp->next = newNode;
-      			newNode->prevPtr = temp;
+      			newNode->previous = temp;
       			newNode->next = newTemp;
       		if (newTemp != NULL){
-        		newTemp->prevPtr = newNode;
+        		newTemp->previous = newNode;
       		}
 	else if (index > ((size -1)/2)){
 		Node* temp = last;
 		Node* newTemp;
 		int i = size;
 		while (i > index){
-			temp  temp->prevPtr;
+			temp  temp->previous;
 			i--;
 		}
-		newTemp = temp->prevPtr;
-		temp->prevPtr = newNode;
-		newNode->prevPtr = newTemp;
-		newNode->nextPtr = temp;
-		newTemp->nextPtr = newNode;
+		newTemp = temp->previous;
+		temp->previous = newNode;
+		newNode->previous = newTemp;
+		newNode->next = temp;
+		newTemp->next = newNode;
 	}
 	/*head->length = size +1*/
 			
@@ -73,7 +73,7 @@ void removeNode (int index){
         if(index == 0) { 
                 head->next->length = head->length;
                 *head = *head->next;
-                *head->prev = NULL;
+                *head->previous = NULL;
         }
 	
         else if(index <= head->length) { 
@@ -83,11 +83,11 @@ void removeNode (int index){
                 }
                 Node *after = *ptr->next->next;
                 ptr->next = *after;
-                after->prev = *ptr;
+                after->previous = *ptr;
         }
 	
         else if(index == head->length) { 
-                *last = *last->prev;
+                *last = *last->previous;
                 last->next = NULL;
         }
         else { 
@@ -119,6 +119,9 @@ union Data get(int index){
 /*returns the number of nodes in the list*/
 
 int length(){
+	
+	
+	
 }
 
   
